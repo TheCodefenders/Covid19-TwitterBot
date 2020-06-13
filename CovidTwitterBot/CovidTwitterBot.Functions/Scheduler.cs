@@ -10,10 +10,12 @@ namespace CovidTwitterBot.Functions
     public class Scheduler
     {
         private readonly ICovidUpdatesDataService _covidUpdatesDataService;
+        private readonly ITweetService _tweetService;
 
-        public Scheduler(ICovidUpdatesDataService covidUpdatesDataService)
+        public Scheduler(ICovidUpdatesDataService covidUpdatesDataService, ITweetService tweetService)
         {
             _covidUpdatesDataService = covidUpdatesDataService;
+            _tweetService = tweetService;
         }
 
         [FunctionName("Scheduler")]
@@ -28,8 +30,7 @@ namespace CovidTwitterBot.Functions
             
             log.LogInformation(response.Count.ToString());
 
-            #region TODO: Call tweetService here
-            #endregion
+            _tweetService.MakeTweet(response);
         }
     }
 }
