@@ -20,6 +20,8 @@ namespace CovidTwitterBot.Services
                                     $"{Environment.NewLine}Siga a thread:";
             
             var idMainTweet = _twitterBot.SendTweet(initialMensage);
+            
+            _twitterBot.FavoriteTweet(idMainTweet);
 
             foreach(var state in statesResult.Results)
             {

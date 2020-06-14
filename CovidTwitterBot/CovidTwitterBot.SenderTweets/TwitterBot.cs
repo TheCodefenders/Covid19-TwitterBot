@@ -38,5 +38,11 @@ namespace CovidTwitterBot.SenderTweets
 
             Console.WriteLine($"Send Reply {tweetReply.Id} to initial tweet {idTweet}");
         }
+
+        public void FavoriteTweet(long idTweet)
+        {
+            if (Tweet.FavoriteTweet(idTweet))
+                _logger.LogInformation($"Tweet {idTweet} setted as favorite");
+        }
     }
 }
