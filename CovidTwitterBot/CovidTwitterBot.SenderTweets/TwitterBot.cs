@@ -1,5 +1,4 @@
 ﻿using CovidTwitterBot.Models;
-using Microsoft.Extensions.Logging;
 using System;
 using Tweetinvi;
 
@@ -7,9 +6,7 @@ namespace CovidTwitterBot.SenderTweets
 {
     public class TwitterBot : ITwitterBot
     {
-        private readonly ILogger<TwitterBot> _logger;
-        
-        public TwitterBot(ILogger<TwitterBot> log)
+        public TwitterBot()
         {
             string customerKey = Environment.GetEnvironmentVariable("CustomKey");
             string customerKeySecret = Environment.GetEnvironmentVariable("CustomKeySecret");
@@ -17,7 +14,6 @@ namespace CovidTwitterBot.SenderTweets
             string accessTokenSecret = Environment.GetEnvironmentVariable("AccessTokenSecret");
 
             Auth.SetUserCredentials(customerKey, customerKeySecret, accessToken, accessTokenSecret);
-            _logger = log;
         }
 
         public long SendTweet(string initialTweet)
@@ -26,7 +22,7 @@ namespace CovidTwitterBot.SenderTweets
 
             var title = Tweet.PublishTweet(initialTweet);
 
-            _logger.LogInformation($"Send start tweet {title.Id}");
+            Console.WriteLine($"Send start tweet {title.Id}");
 
             return title.Id;
         }
@@ -40,7 +36,7 @@ namespace CovidTwitterBot.SenderTweets
 
             var tweetReply = Tweet.PublishTweetInReplyTo(text, idTweet);
 
-            _logger.LogInformation($"Send Reply {tweetReply.Id} to initial tweet {idTweet}");
+            Console.WriteLine($"Send Reply {tweetReply.Id} to initial tweet {idTweet}");
         }
     }
 }
