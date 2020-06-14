@@ -6,6 +6,5 @@ namespace CovidTwitterBot.SenderTweets
     {
         long SendTweet(string status);
         void ReplyTweet(StateDataResult result, long idTweet);
-        void FavoriteTweet(long idTweet);
     }
 }

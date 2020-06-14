@@ -16,12 +16,10 @@ namespace CovidTwitterBot.Services
         public void MakeTweet(AllStatesResult statesResult)
         {
             var initialMensage = $"[Covid-19 - Atualização]{Environment.NewLine}" +
-                                    $"Atualizações sobre o covid-19 nos estados brasileiros em {DateTime.Now.ToString("dd/MM/yyyy")}" +
+                                    $"Atualizações sobre o covid-19 nos estados brasileiros em {DateTime.Now.ToString("dd/MM/yyyy HH:mm")}" +
                                     $"{Environment.NewLine}Siga a thread:";
             
             var idMainTweet = _twitterBot.SendTweet(initialMensage);
-            
-            _twitterBot.FavoriteTweet(idMainTweet);
 
             foreach(var state in statesResult.Results)
             {
