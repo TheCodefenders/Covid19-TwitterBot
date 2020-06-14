@@ -42,7 +42,7 @@ namespace CovidTwitterBot.SenderTweets
         public void FavoriteTweet(long idTweet)
         {
             if (Tweet.FavoriteTweet(idTweet))
-                _logger.LogInformation($"Tweet {idTweet} setted as favorite");
+                Console.WriteLine($"Tweet {idTweet} setted as favorite");
         }
     }
 }
